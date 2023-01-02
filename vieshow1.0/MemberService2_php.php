@@ -17,8 +17,8 @@ $sql_query_identity = "SELECT * FROM member WHERE identity_number = '$identity'"
 
 $result1 = mysqli_query($link, $sql_query_identity) or die("查詢失敗");
 if (mysqli_num_rows($result1)) {
-    header("Location: http://localhost/vieshow1.0/MemberService2_show.php");
+    header("Location: MemberService2_show.php");
 } else {
-    show_msg("身分證錯誤!",'http://localhost/vieshow1.0/MemberService2.php');
+    show_msg("身分證錯誤!",'MemberService2.php');
 }
 ?>

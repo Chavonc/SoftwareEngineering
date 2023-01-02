@@ -166,11 +166,25 @@ if (mysqli_num_rows($result17) > 0) {
             <font size="2px">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="Home.php">VIESHOW</a></li>
-                    <li class="nav-item" style=" cursor:pointer;"><a class="nav-link" href="Login.php">會員登入</a></li>
-                    <li class="nav-item"><a class="nav-link" href="TicketRecord.php">訂票記錄</a></li>
-                    <li class="nav-item"><a class="nav-link" href="StoredValue.php">會員儲值</a></li>
+                    <?php
+                        if ((!isset($_SESSION['mail_login']) && !isset($_SESSION['password_login']))) 
+                        {
+                            echo "<li class='nav-item' style=' cursor:pointer;'><a class='nav-link' href='Login.php'>會員登入</a></li>";
+                        }
+                        else if ($_SESSION['mail_login'] == '' && $_SESSION['password_login'] == '') 
+                        {
+                            echo "<li class='nav-item'><a class='nav-link' href='Login.php'>會員登入</a></li>";
+                        } 
+                        else 
+                        {
+                            echo "<li class='nav-item'><a class='nav-link' href='Logout_php.php'>會員登出</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='TicketRecord.php'>訂票記錄</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='StoredValue.php'>會員儲值</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='Logging.php'>兌換點數</a></li>";
+                        }
+                        //echo $_SESSION['mail_login'];//debug
+                    ?>
                     <li class="nav-item"><a class="nav-link" href="MemberService1.php">會員服務</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Logging.php">兌換點數</a></li>
                 </ul>
             </font>
         </nav>
@@ -392,13 +406,13 @@ if (mysqli_num_rows($result17) > 0) {
                                     <option value="3">03</option>
                                     <option value="4">04</option>
                                     <option value="5">05</option>
-                                    <option value="5">06</option>
-                                    <option value="5">07</option>
-                                    <option value="5">08</option>
-                                    <option value="5">09</option>
-                                    <option value="5">10</option>
-                                    <option value="5">11</option>
-                                    <option value="5">12</option>
+                                    <option value="6">06</option>
+                                    <option value="7">07</option>
+                                    <option value="8">08</option>
+                                    <option value="9">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
 
                                 </select>
                             </div>
@@ -406,7 +420,6 @@ if (mysqli_num_rows($result17) > 0) {
                                 <span>
                                     <select class="form-select form-select-md mb-3" aria-label=".form-select-lg example">
                                         <option selected>年份</option>
-                                        <option value="22">22</option>
                                         <option value="23">23</option>
                                         <option value="24">24</option>
                                         <option value="25">25</option>
@@ -418,13 +431,11 @@ if (mysqli_num_rows($result17) > 0) {
                                         <option value="31">31</option>
                                         <option value="32">32</option>
                                         <option value="33">33</option>
-
+                                        <option value="34">34</option>
                                     </select></span>
                             </div>
-
                         </div>
                         <br>
-
                         <div class="submit" style="text-align:center">
                             <input type="submit" value="確認" class="btn btn-outline-primary button" style="width: 100px;">
                         </div>

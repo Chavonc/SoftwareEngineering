@@ -99,9 +99,9 @@ if ($rs_mem[5] >= $rs[1])
     $sql_sub_point = "UPDATE  `member` SET `member_point` = $rs_mem[5] WHERE `member_id`= $member_id;";
     $result2 = mysqli_query($link, $sql_sub_point) or die("新增失敗");
 
-    show_msg("兌換成功! ", $item_name, 'http://localhost/vieshow1.0/Logging.php');
+    show_msg("兌換成功! ", $item_name, 'Logging.php');
 }
 else
 {
-    show_msg("兌換失敗! 您的點數不足! ", $item_name, 'http://localhost/vieshow1.0/Logging.php');
+    show_msg("兌換失敗! 您的點數不足! ", $item_name, 'Logging.php');
 }

@@ -149,9 +149,24 @@ if (mysqli_num_rows($result17)>0) {
             <font size="2px">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="Home.php">VIESHOW</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Login.php">會員登入</a></li>
-                    <li class="nav-item"><a class="nav-link" href="TicketRecord.php">訂票記錄</a></li>
-                    <li class="nav-item"><a class="nav-link" href="StoredValue.php">會員儲值</a></li>
+                    <?php
+                        if ((!isset($_SESSION['mail_login']) && !isset($_SESSION['password_login']))) 
+                        {
+                            echo "<li class='nav-item' style=' cursor:pointer;'><a class='nav-link' href='Login.php'>會員登入</a></li>";
+                        }
+                        else if ($_SESSION['mail_login'] == '' && $_SESSION['password_login'] == '') 
+                        {
+                            echo "<li class='nav-item'><a class='nav-link' href='Login.php'>會員登入</a></li>";
+                        } 
+                        else 
+                        {
+                            echo "<li class='nav-item'><a class='nav-link' href='Logout_php.php'>會員登出</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='TicketRecord.php'>訂票記錄</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='StoredValue.php'>會員儲值</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='Logging.php'>兌換點數</a></li>";
+                        }
+                        //echo $_SESSION['mail_login'];//debug
+                    ?>
                     <li class="nav-item"><a class="nav-link" href="MemberService1.php">會員服務</a></li>
                 </ul> 
             </font>
@@ -453,7 +468,7 @@ if (mysqli_num_rows($result17)>0) {
      </div>
      <div>
           <h6 style="position:absolute;top:220px;left:15%;">*下方為座位參考圖</h6>
-            <form method="POST" id="seatform" style="position:absolute;top:220px;left:35%;" action="BookingList.php?STUDIOid=<?php echo $show_cinema?>&MOVIEid=<?php echo $show_id?>&MOVIEDATE=<?php echo $show_date?>&MOVIEGRADING=<?php echo $show_grading?>&MOVIETIME=<?php echo $show_time?>&MOVIEIWANT_id=<?php echo $row_movie_I_want_id['movie_I_want_id']?>&ticketcount1=<?=$ticket1?>&ticketcount2=<?=$ticket2?>">
+            <form method="POST" id="seatform" style="position:absolute;top:220px;left:35%;" action="BookingList.php?STUDIOid=<?php echo $show_cinema?>&MOVIEid=<?php echo $show_id?>&MOVIEDATE=<?php echo $show_date?>&MOVIEGRADING=<?php echo $show_grading?>&MOVIETIME=<?php echo $show_time?>&MOVIEIWANT_id=<?php echo $row_movie_I_want_id['movie_I_want_id']?>">
                     <table>
                         <tr>
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -491,348 +506,348 @@ if (mysqli_num_rows($result17)>0) {
                             // echo $array[2][0];
                         ?>
                         <tr>
-                        <td>A</td>
-                        <?php
-                        if ($array[0] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA01' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatA01'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[1] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA02' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatA02'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[2] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA03' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatA03'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[3] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA04' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatA04'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[4] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA05' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatA05'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[5] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA06' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatA06'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[6] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA07' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatA07'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[7] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA08' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatA08'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[8] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA09' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatA09'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[9] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA10' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatA10'></td>";
-                        ?>
-                    </tr>
-                    <tr>
-                        <td>B</td>
-                        <?php
-                        if ($array[10] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB01' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatB01'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[11] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB02' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatB02'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[12] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB03' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatB03'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[13] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB04' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatB04'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[14] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB05' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatB05'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[15] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB06' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatB06'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[16] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB07' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatB07'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[17] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB08' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatB08'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[18] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB09' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatB09'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[19] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB10' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatB10'></td>";
-                        ?>
-                    </tr>
-                    <tr>
-                        <td>C</td>
-                        <?php
-                        if ($array[20] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC01' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatC01'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[21] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC02' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatC02'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[22] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC03' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatC03'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[23] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC04' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatC04'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[24] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC05' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatC05'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[25] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC06' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatC06'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[26] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC07' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatC07'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[27] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC08' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatC08'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[28] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC09' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatC09'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[29] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC10' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatC10'></td>";
-                        ?>
-                    </tr>
-                    <tr>
-                        <td>D</td>
-                        <?php
-                        if ($array[30] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD01' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatD01'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[31] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD02' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatD02'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[32] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD03' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatD03'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[33] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD04' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatD04'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[34] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD05' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatD05'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[35] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD06' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatD06'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[36] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD07' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatD07'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[37] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD08' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatD08'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[38] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD09' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatD09'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[39] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD10' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatD10'></td>";
-                        ?>
-                    </tr>
-                    <tr>
-                        <td>E</td>
-                        <?php
-                        if ($array[40] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE01' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatE01'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[41] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE02' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatE02'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[42] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE03' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatE03'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[43] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE04' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatE04'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[44] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE05' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatE05'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[45] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE06' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatE06'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[46] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE07' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatE07'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[47] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE08' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatE08'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[48] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE09' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatE09'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[49] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE10' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatE10'></td>";
-                        ?>
-                    </tr>
-                    <tr>
-                        <td>F</td>
-                        <?php
-                        if ($array[50] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF01' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatF01'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[51] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF02' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatF02'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[52] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF03' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatF03'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[53] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF04' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatF04'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[54] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF05' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatF05'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[55] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF06' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatF06'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[56] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF07' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatF07'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[57] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF08' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatF08'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[58] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF09' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatF09'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[59] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF10' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatF10'></td>";
-                        ?>
-                    </tr>
-                    <tr>
-                        <td>G</td>
-                        <?php
-                        if ($array[60] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG01' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatG01'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[61] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG02' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatG02'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[62] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG03' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatG03'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[63] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG04' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatG04'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[64] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG05' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatG05'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[65] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG06' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatG06'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[66] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG07' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatG07'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[67] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG08' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatG08'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[68] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG09' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatG09'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[69] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG10' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatG10'></td>";
-                        ?>
-                    </tr>
-                    <tr>
-                        <td>H</td>
-                        <?php
-                        if ($array[70] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH01' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatH01'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[71] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH02' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatH02'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[72] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH03' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatH03'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[73] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH04' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatH04'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[74] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH05' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatH05'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[75] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH06' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatH06'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[76] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH07' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatH07'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[77] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH08' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatH08'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[78] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH09' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatH09'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[79] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH10' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatH10'></td>";
-                        ?>
-                    </tr>
-                    <tr>
-                        <td>I</td>
-                        <?php
-                        if ($array[80] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI01' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatI01'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[81] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI02' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatI02'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[82] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI03' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatI03'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[83] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI04' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatI04'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[84] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI05' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatI05'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[85] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI06' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatI06'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[86] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI07' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatI07'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[87] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI08' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatI08'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[88] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI09' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatI09'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[89] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI10' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatI10'></td>";
-                        ?>
-                    </tr>
-                    <tr>
-                        <td>J</td>
-                        <?php
-                        if ($array[90] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ01' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatJ01'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[91] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ02' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatJ02'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[92] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ03' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatJ03'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[93] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ04' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatJ04'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[94] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ05' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatJ05'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[95] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ06' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatJ06'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[96] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ07' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatJ07'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[97] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ08' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatJ08'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[98] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ09' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatJ09'></td>";
-                        echo "<td>&nbsp;&nbsp;&nbsp;</td>";
-                        if ($array[99] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ10' disabled='disabled'></td>";
-                        else echo "<td><input type='checkbox' name='seat' value='seatJ10'></td>";
-                        ?>
-                    </tr>
-                </table>
-            </form>
-     </div>
+                            <td>A</td>
+                            <?php
+                            if ($array[0] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA01' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatA01'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[1] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA02' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatA02'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[2] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA03' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatA03'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[3] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA04' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatA04'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[4] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA05' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatA05'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[5] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA06' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatA06'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[6] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA07' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatA07'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[7] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA08' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatA08'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[8] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA09' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatA09'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[9] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatA10' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatA10'></td>";
+                            ?>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <?php
+                            if ($array[10] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB01' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatB01'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[11] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB02' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatB02'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[12] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB03' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatB03'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[13] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB04' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatB04'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[14] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB05' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatB05'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[15] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB06' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatB06'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[16] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB07' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatB07'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[17] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB08' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatB08'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[18] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB09' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatB09'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[19] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatB10' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatB10'></td>";
+                            ?>
+                        </tr>
+                        <tr>
+                            <td>C</td>
+                            <?php
+                            if ($array[20] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC01' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatC01'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[21] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC02' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatC02'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[22] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC03' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatC03'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[23] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC04' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatC04'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[24] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC05' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatC05'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[25] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC06' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatC06'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[26] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC07' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatC07'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[27] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC08' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatC08'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[28] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC09' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatC09'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[29] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatC10' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatC10'></td>";
+                            ?>
+                        </tr>
+                        <tr>
+                            <td>D</td>
+                            <?php
+                            if ($array[30] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD01' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatD01'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[31] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD02' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatD02'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[32] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD03' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatD03'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[33] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD04' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatD04'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[34] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD05' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatD05'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[35] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD06' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatD06'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[36] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD07' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatD07'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[37] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD08' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatD08'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[38] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD09' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatD09'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[39] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatD10' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatD10'></td>";
+                            ?>
+                        </tr>
+                        <tr>
+                            <td>E</td>
+                            <?php
+                            if ($array[40] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE01' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatE01'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[41] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE02' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatE02'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[42] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE03' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatE03'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[43] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE04' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatE04'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[44] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE05' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatE05'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[45] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE06' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatE06'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[46] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE07' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatE07'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[47] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE08' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatE08'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[48] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE09' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatE09'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[49] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatE10' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatE10'></td>";
+                            ?>
+                        </tr>
+                        <tr>
+                            <td>F</td>
+                            <?php
+                            if ($array[50] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF01' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatF01'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[51] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF02' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatF02'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[52] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF03' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatF03'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[53] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF04' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatF04'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[54] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF05' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatF05'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[55] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF06' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatF06'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[56] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF07' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatF07'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[57] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF08' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatF08'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[58] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF09' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatF09'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[59] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatF10' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatF10'></td>";
+                            ?>
+                        </tr>
+                        <tr>
+                            <td>G</td>
+                            <?php
+                            if ($array[60] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG01' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatG01'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[61] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG02' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatG02'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[62] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG03' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatG03'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[63] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG04' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatG04'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[64] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG05' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatG05'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[65] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG06' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatG06'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[66] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG07' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatG07'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[67] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG08' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatG08'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[68] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG09' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatG09'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[69] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatG10' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatG10'></td>";
+                            ?>
+                        </tr>
+                        <tr>
+                            <td>H</td>
+                            <?php
+                            if ($array[70] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH01' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatH01'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[71] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH02' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatH02'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[72] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH03' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatH03'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[73] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH04' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatH04'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[74] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH05' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatH05'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[75] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH06' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatH06'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[76] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH07' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatH07'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[77] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH08' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatH08'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[78] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH09' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatH09'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[79] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatH10' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatH10'></td>";
+                            ?>
+                        </tr>
+                        <tr>
+                            <td>I</td>
+                            <?php
+                            if ($array[80] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI01' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatI01'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[81] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI02' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatI02'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[82] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI03' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatI03'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[83] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI04' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatI04'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[84] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI05' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatI05'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[85] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI06' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatI06'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[86] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI07' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatI07'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[87] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI08' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatI08'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[88] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI09' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatI09'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[89] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatI10' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatI10'></td>";
+                            ?>
+                        </tr>
+                        <tr>
+                            <td>J</td>
+                            <?php
+                            if ($array[90] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ01' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatJ01'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[91] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ02' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatJ02'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[92] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ03' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatJ03'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[93] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ04' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatJ04'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[94] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ05' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatJ05'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[95] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ06' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatJ06'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[96] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ07' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatJ07'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[97] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ08' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatJ08'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[98] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ09' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatJ09'></td>";
+                            echo "<td>&nbsp;&nbsp;&nbsp;</td>";
+                            if ($array[99] == 'sold') echo "<td><input type='checkbox' name='seat' value='seatJ10' disabled='disabled'></td>";
+                            else echo "<td><input type='checkbox' name='seat' value='seatJ10'></td>";
+                            ?>
+                        </tr>
+                    </table>
+                </form>
+    </div>
 </body>
 <script language="Javascript">
     //seatcheckbox

@@ -1,144 +1,6 @@
 <?php
 require("db.php");
 session_start();
-
-$sql_name = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0004' ";
-$result_name = mysqli_query($link, $sql_name);
-if (mysqli_num_rows($result_name) > 0) {
-     foreach ($result_name as $row_name) {
-     }
-}
-
-$sql_info = "SELECT `studio_info` FROM `studio` WHERE `studio_id`='stu0004' ";
-$result_info = mysqli_query($link, $sql_info);
-if (mysqli_num_rows($result_info) > 0) {
-     foreach ($result_info as $row_info) {
-     }
-}
-
-$sql_phone = "SELECT `studio_phone` FROM `studio` WHERE `studio_id`='stu0004' ";
-$result_phone = mysqli_query($link, $sql_phone);
-if (mysqli_num_rows($result_phone) > 0) {
-     foreach ($result_phone as $row_phone) {
-     }
-}
-
-$sql_address = "SELECT `studio_address` FROM `studio` WHERE `studio_id`='stu0004' ";
-$result_address = mysqli_query($link, $sql_address);
-if (mysqli_num_rows($result_address) > 0) {
-     foreach ($result_address as $row_address) {
-     }
-}
-
-$sql_traffic = "SELECT `traffic_info` FROM `studio` WHERE `studio_id`='stu0004' ";
-$result_traffic = mysqli_query($link, $sql_traffic);
-if (mysqli_num_rows($result_traffic) > 0) {
-     foreach ($result_traffic as $row_traffic) {
-     }
-}
-
-$sql = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0001' ";
-$result = mysqli_query($link, $sql);
-if (mysqli_num_rows($result) > 0) {
-     foreach ($result as $row1) {
-     }
-}
-$sql2 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0002' ";
-$result2 = mysqli_query($link, $sql2);
-if (mysqli_num_rows($result2) > 0) {
-     foreach ($result2 as $row2) {
-     }
-}
-$sql3 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0003' ";
-$result3 = mysqli_query($link, $sql3);
-if (mysqli_num_rows($result3) > 0) {
-     foreach ($result3 as $row3) {
-     }
-}
-$sql4 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0004' ";
-$result4 = mysqli_query($link, $sql4);
-if (mysqli_num_rows($result4) > 0) {
-     foreach ($result4 as $row4) {
-     }
-}
-$sql5 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0005' ";
-$result5 = mysqli_query($link, $sql5);
-if (mysqli_num_rows($result5) > 0) {
-     foreach ($result5 as $row5) {
-     }
-}
-$sql6 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0006' ";
-$result6 = mysqli_query($link, $sql6);
-if (mysqli_num_rows($result6) > 0) {
-     foreach ($result6 as $row6) {
-     }
-}
-$sql7 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0007' ";
-$result7 = mysqli_query($link, $sql7);
-if (mysqli_num_rows($result7) > 0) {
-     foreach ($result7 as $row7) {
-     }
-}
-$sql8 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0008' ";
-$result8 = mysqli_query($link, $sql8);
-if (mysqli_num_rows($result8) > 0) {
-     foreach ($result8 as $row8) {
-     }
-}
-$sql9 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0009' ";
-$result9 = mysqli_query($link, $sql9);
-if (mysqli_num_rows($result9) > 0) {
-     foreach ($result9 as $row9) {
-     }
-}
-$sql10 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0010' ";
-$result10 = mysqli_query($link, $sql10);
-if (mysqli_num_rows($result10) > 0) {
-     foreach ($result10 as $row10) {
-     }
-}
-$sql11 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0011' ";
-$result11 = mysqli_query($link, $sql11);
-if (mysqli_num_rows($result11) > 0) {
-     foreach ($result11 as $row11) {
-     }
-}
-$sql12 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0012' ";
-$result12 = mysqli_query($link, $sql12);
-if (mysqli_num_rows($result12) > 0) {
-     foreach ($result12 as $row12) {
-     }
-}
-$sql13 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0013' ";
-$result13 = mysqli_query($link, $sql13);
-if (mysqli_num_rows($result13) > 0) {
-     foreach ($result13 as $row13) {
-     }
-}
-$sql14 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0014' ";
-$result14 = mysqli_query($link, $sql14);
-if (mysqli_num_rows($result14) > 0) {
-     foreach ($result14 as $row14) {
-     }
-}
-$sql15 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0015' ";
-$result15 = mysqli_query($link, $sql15);
-if (mysqli_num_rows($result15) > 0) {
-     foreach ($result15 as $row15) {
-     }
-}
-$sql16 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0016' ";
-$result16 = mysqli_query($link, $sql16);
-if (mysqli_num_rows($result16) > 0) {
-     foreach ($result16 as $row16) {
-     }
-}
-$sql17 = "SELECT `studio_name` FROM `studio` WHERE `studio_id`='stu0017' ";
-$result17 = mysqli_query($link, $sql17);
-if (mysqli_num_rows($result17) > 0) {
-     foreach ($result17 as $row17) {
-     }
-}
 ?>
 <!DOCTYPE html>
 <html lang="zh-tw">
@@ -164,11 +26,25 @@ if (mysqli_num_rows($result17) > 0) {
                <font size="2px">
                     <ul class="navbar-nav">
                          <li class="nav-item"><a class="nav-link" href="Home.php">VIESHOW</a></li>
-                         <li class="nav-item" style=" cursor:pointer;"><a class="nav-link" href="Login.php">會員登入</a></li>
-                         <li class="nav-item"><a class="nav-link" href="TicketRecord.php">訂票記錄</a></li>
-                         <li class="nav-item"><a class="nav-link" href="StoredValue.php">會員儲值</a></li>
+                         <?php
+                        if ((!isset($_SESSION['mail_login']) && !isset($_SESSION['password_login']))) 
+                        {
+                            echo "<li class='nav-item' style=' cursor:pointer;'><a class='nav-link' href='Login.php'>會員登入</a></li>";
+                        }
+                        else if ($_SESSION['mail_login'] == '' && $_SESSION['password_login'] == '') 
+                        {
+                            echo "<li class='nav-item'><a class='nav-link' href='Login.php'>會員登入</a></li>";
+                        } 
+                        else 
+                        {
+                            echo "<li class='nav-item'><a class='nav-link' href='Logout_php.php'>會員登出</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='TicketRecord.php'>訂票記錄</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='StoredValue.php'>會員儲值</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='Logging.php'>兌換點數</a></li>";
+                        }
+                        //echo $_SESSION['mail_login'];//debug
+                        ?>
                          <li class="nav-item"><a class="nav-link" href="MemberService1.php">會員服務</a></li>
-                         <li class="nav-item"><a class="nav-link" href="Logging.php">兌換點數</a></li>
                     </ul>
                </font>
           </nav>

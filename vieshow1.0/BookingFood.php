@@ -191,6 +191,18 @@ $result17 = mysqli_query($link,$sql17);
 if (mysqli_num_rows($result17)>0) {
     foreach($result17 as $row17){}
 }
+
+function show_msg($msg, $money, $url)
+{
+    echo "<script>alert('{$msg} {$money}');window.location.href='{$url}';</script>";
+    exit();
+}
+if ($_SESSION['mail_login'] == '' && $_SESSION['password_login'] == '') 
+{
+    show_msg("請先登入!",'','Login.php');
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -214,9 +226,24 @@ if (mysqli_num_rows($result17)>0) {
             <font size="2px">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="Home.php">VIESHOW</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Login.php">會員登入</a></li>
-                    <li class="nav-item"><a class="nav-link" href="TicketRecord.php">訂票記錄</a></li>
-                    <li class="nav-item"><a class="nav-link" href="StoredValue.php">會員儲值</a></li>
+                    <?php
+                        if ((!isset($_SESSION['mail_login']) && !isset($_SESSION['password_login']))) 
+                        {
+                            echo "<li class='nav-item' style=' cursor:pointer;'><a class='nav-link' href='Login.php'>會員登入</a></li>";
+                        }
+                        else if ($_SESSION['mail_login'] == '' && $_SESSION['password_login'] == '') 
+                        {
+                            echo "<li class='nav-item'><a class='nav-link' href='Login.php'>會員登入</a></li>";
+                        } 
+                        else 
+                        {
+                            echo "<li class='nav-item'><a class='nav-link' href='Logout_php.php'>會員登出</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='TicketRecord.php'>訂票記錄</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='StoredValue.php'>會員儲值</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='Logging.php'>兌換點數</a></li>";
+                        }
+                        //echo $_SESSION['mail_login'];//debug
+                    ?>
                     <li class="nav-item"><a class="nav-link" href="MemberService1.php">會員服務</a></li>
                 </ul> 
             </font>
@@ -705,7 +732,7 @@ if (mysqli_num_rows($result17)>0) {
                 </tr>
             </table>
             <input type="Submit" value="下一步" class="btn btn-light" style="position:absolute; top:420px;left:80%;background-color:aquamarine;" 
-            onclick="location.href='BookingSeat.php?STUDIOid=<?php echo $show_cinema?>&MOVIEid=<?php echo $show_id?>&MOVIEDATE=<?php echo $show_date?>&MOVIEGRADING=<?php echo $show_grading?>&MOVIETIME=<?php echo $show_time?>&MOVIEIWANT_id=<?php echo $row_movie_I_want_id['movie_I_want_id']?>&ticketCount1=<?=$ticket1?>&ticketCount2=<?=$ticket2?>&foodcount1=<?=$food1?>&foodcount2=<?=$food2?>&foodcount3=<?=$food3?>&foodcount4=<?=$food4?>&foodcount5=<?=$food5?>&foodcount6=<?=$food6?>&foodcount7=<?=$food7?>'">
+            onclick="location.href='BookingSeat.php?STUDIOid=<?php echo $show_cinema?>&MOVIEid=<?php echo $show_id?>&MOVIEDATE=<?php echo $show_date?>&MOVIEGRADING=<?php echo $show_grading?>&MOVIETIME=<?php echo $show_time?>&MOVIEIWANT_id=<?php echo $row_movie_I_want_id['movie_I_want_id']?>'">
         </form>
         <div>
             <input type="Submit" value="上一步" class="btn btn-light" style="position:absolute; top:420px;left:72%;background-color:aquamarine;"  onclick="history.back()">

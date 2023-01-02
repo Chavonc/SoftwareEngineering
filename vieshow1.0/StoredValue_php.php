@@ -17,7 +17,7 @@ $mail = $_SESSION['mail_login'];
 $password = $_SESSION['password_login'];
 
 if ($mail == 0){
-    show_msg("尚未登入，請先登入會員!", '', 'http://localhost/vieshow1.0/Login.php');
+    show_msg("尚未登入，請先登入會員!", '', 'Login.php');
 }
 
 $sql_member_id = "SELECT member_id, member_money FROM member WHERE member_mail = '$mail' AND member_password = '$password'";
@@ -44,4 +44,4 @@ elseif(mysqli_affected_rows($link)==0) {
     echo "無資料更新";
 }
 
-show_msg("儲值成功!此次儲值總金額: ", $StoredMoney, 'http://localhost/vieshow1.0/TicketStoreRecord.php');
+show_msg("儲值成功!此次儲值總金額: ", $StoredMoney, 'TicketStoreRecord.php');

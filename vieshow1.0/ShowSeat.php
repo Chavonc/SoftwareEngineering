@@ -1,5 +1,6 @@
 <?php
 require_once 'db.php';
+session_start();
 // http://localhost:8080/viewshow_php/ShowSeat.php
 header('Content-Type: text/html; charset=utf-8');
 
@@ -113,7 +114,6 @@ if (mysqli_num_rows($result_time32)>0) {
           </tr>
           <tr>
                <td>
-                <!--sql有bug-->
                 <?php 
                 $sql_seat = "SELECT seat_id FROM seat WHERE movie_I_want_id IN (SELECT movie_I_want_id FROM movie_i_want WHERE movie_id='$show_id' AND movie_watching_date='$show_date' AND screening_id IN (SELECT screening_id FROM screening WHERE screening_time='$show_time' )) AND seat_type <> 'unsold'";
                 $seat_id = array();

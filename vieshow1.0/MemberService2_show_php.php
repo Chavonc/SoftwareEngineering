@@ -18,5 +18,5 @@ $sql_update_identity = "UPDATE member SET member_mail = '$mail', member_password
 
 $result1 = mysqli_query($link, $sql_update_identity) or die("查詢失敗");
 
-show_msg("修改成功!",'http://localhost/vieshow1.0/MemberService2.php');
+show_msg("修改成功!",'MemberService2.php');
 ?>

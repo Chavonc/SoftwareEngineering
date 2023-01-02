@@ -155,7 +155,6 @@ if (mysqli_num_rows($result17) > 0) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-  <!-- CDN的方式(直接連到網路) -->
 </head>
 
 <body>
@@ -165,11 +164,25 @@ if (mysqli_num_rows($result17) > 0) {
         <font size="2px">
           <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" href="Home.php">VIESHOW</a></li>
-            <li class="nav-item" style=" cursor:pointer;"><a class="nav-link" href="Login.php">會員登入</a></li>
-            <li class="nav-item"><a class="nav-link" href="TicketRecord.php">訂票記錄</a></li>
-            <li class="nav-item"><a class="nav-link" href="StoredValue.php">會員儲值</a></li>
+              <?php
+                        if ((!isset($_SESSION['mail_login']) && !isset($_SESSION['password_login']))) 
+                        {
+                            echo "<li class='nav-item' style=' cursor:pointer;'><a class='nav-link' href='Login.php'>會員登入</a></li>";
+                        }
+                        else if ($_SESSION['mail_login'] == '' && $_SESSION['password_login'] == '') 
+                        {
+                            echo "<li class='nav-item'><a class='nav-link' href='Login.php'>會員登入</a></li>";
+                        } 
+                        else 
+                        {
+                            echo "<li class='nav-item'><a class='nav-link' href='Logout_php.php'>會員登出</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='TicketRecord.php'>訂票記錄</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='StoredValue.php'>會員儲值</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='Logging.php'>兌換點數</a></li>";
+                        }
+                        //echo $_SESSION['mail_login'];//debug
+              ?>
             <li class="nav-item"><a class="nav-link" href="MemberService1.php">會員服務</a></li>
-            <li class="nav-item"><a class="nav-link" href="Logging.php">兌換點數</a></li>
           </ul>
         </font>
       </nav>

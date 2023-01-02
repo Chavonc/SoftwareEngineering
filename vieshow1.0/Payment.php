@@ -1,6 +1,7 @@
 <?php
 // 載入db.php來連結資料庫
 require_once 'db.php';
+session_start();
 header('Content-Type: text/html; charset=utf-8');
 
 //傳值
@@ -127,9 +128,24 @@ if (mysqli_num_rows($result17)>0) {
             <font size="2px">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="Home.php">VIESHOW</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Login.php">會員登入</a></li>
-                    <li class="nav-item"><a class="nav-link" href="TicketRecord.php">訂票記錄</a></li>
-                    <li class="nav-item"><a class="nav-link" href="StoredValue.php">會員儲值</a></li>
+                    <?php
+                        if ((!isset($_SESSION['mail_login']) && !isset($_SESSION['password_login']))) 
+                        {
+                            echo "<li class='nav-item' style=' cursor:pointer;'><a class='nav-link' href='Login.php'>會員登入</a></li>";
+                        }
+                        else if ($_SESSION['mail_login'] == '' && $_SESSION['password_login'] == '') 
+                        {
+                            echo "<li class='nav-item'><a class='nav-link' href='Login.php'>會員登入</a></li>";
+                        } 
+                        else 
+                        {
+                            echo "<li class='nav-item'><a class='nav-link' href='Logout_php.php'>會員登出</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='TicketRecord.php'>訂票記錄</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='StoredValue.php'>會員儲值</a></li>";
+                            echo "<li class='nav-item'><a class='nav-link' href='Logging.php'>兌換點數</a></li>";
+                        }
+                        //echo $_SESSION['mail_login'];//debug
+                    ?>
                     <li class="nav-item"><a class="nav-link" href="MemberService1.php">會員服務</a></li>
                 </ul> 
             </font>
