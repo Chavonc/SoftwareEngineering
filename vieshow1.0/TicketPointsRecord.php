@@ -226,7 +226,7 @@ if (mysqli_num_rows($result17) > 0) {
     <div class="col-1"></div>
     <div class="col-6">
       <div class="shadow-sm p-3 mb-5 bg-body rounded">
-        <div class="card" style="vertical-align:middle;border-style: none;">
+      <div class="card" style="vertical-align:middle;border-style: none;">
           <br>
           <?php
           $member_id = $_SESSION['member_id'];
@@ -240,19 +240,22 @@ if (mysqli_num_rows($result17) > 0) {
           $i = 0;
           $j = 0;
           while ($row = mysqli_fetch_row($result)) {
-            $array[$i][$j] = $row[0];
-            $j++;
-            $array[$i][$j] = $row[1];
-            $j++;
-            $array[$i][$j] = $row[2];
-            if ($j == 2) {
-              $i++;
-              $j = 0;
-            } //else {$j++ ;}
+            if ($row[1] == '0') { //總花費金額=0的話，不存進array
+              continue;
+            } else {
+              $array[$i][$j] = $row[0];
+              $j++;
+              $array[$i][$j] = $row[1];
+              $j++;
+              $array[$i][$j] = $row[2];
+              if ($j == 2) {
+                $i++;
+                $j = 0;
+              } //else {$j++ ;}
+            }
           }
           ?>
           <div class="card-body">
-
             <div align="center">
               <h5>點數累兌記錄</h5>
             </div>
@@ -267,27 +270,29 @@ if (mysqli_num_rows($result17) > 0) {
               </thead>
               <tbody>
                 <?php
-                for ($i = 0; $i < mysqli_num_rows($result); $i++) {
-                  echo "<tr>";
-                  $number = $i + 1;
-                  echo "<th scope='row'>$number</th>";
-                  echo "<td>";
-                  echo $array[$i][0];
-                  echo "</td>";
-                  echo "<td>";
-                  echo $array[$i][1];
-                  echo "</td>";
-                  echo "<td>";
-                  echo $array[$i][2];
-                  echo "</td>";
-                  echo "</tr>";
+                if ($array[0][0] == '0') {
+                } else {
+                  for ($i = 0; $i < count($array); $i++) {
+                    echo "<tr>";
+                    $number = $i + 1;
+                    echo "<th scope='row'>$number</th>";
+                    echo "<td>";
+                    echo $array[$i][0];
+                    echo "</td>";
+                    echo "<td>";
+                    echo $array[$i][1];
+                    echo "</td>";
+                    echo "<td>";
+                    echo $array[$i][2];
+                    echo "</td>";
+                    echo "</tr>";
+                  }
                 }
+
                 ?>
 
-              </tbody>
+              </tbody>            
             </table>
-
-
           </div>
         </div>
 

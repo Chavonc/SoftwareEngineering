@@ -852,8 +852,26 @@ if($f7amount!='0')
                     <td><center>
                         <?php
                             //after booking member_points+100
-                            $_SESSION['feedback']=100;
-                            $addpoint=$_SESSION['feedback'];
+                            if($t1=='0' && $t1money=='0' )
+                            {
+                                $_SESSION['feedback']=0;
+                                $addpoint=$_SESSION['feedback'];
+                            }
+                            else if($t2=='0' && $t2money=='0')
+                            {
+                                $_SESSION['feedback']=0;
+                                $addpoint=$_SESSION['feedback'];
+                            }
+                            else if($t1!='0' && $t1money!='0')
+                            {
+                                $_SESSION['feedback']=100;
+                                $addpoint=$_SESSION['feedback'];
+                            }
+                            else if($t2!='0' && $t2money!='0')
+                            {
+                                $_SESSION['feedback']=100;
+                                $addpoint=$_SESSION['feedback'];
+                            }
                             $pointquery="SELECT `booking_feedback_point` FROM `booking_list` WHERE studio_id='$show_cinema' AND movie_i_want_id='$miwid' AND member_id='$member_id'";
                             $p1 = mysqli_query($link,$pointquery);
                             if (mysqli_num_rows($p1)>0) 

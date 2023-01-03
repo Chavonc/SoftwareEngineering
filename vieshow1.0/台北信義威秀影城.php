@@ -197,7 +197,7 @@ if (mysqli_num_rows($result17)>0) {
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <li class="nav-item" color="black"><a class="nav-link" href="Cinema.php">影城資訊</a></li>
-                    <li class="nav-item"><a class="nav-link" href="vieshow111/ClassExplain.php">級數說明</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ClassExplain.php">級數說明</a></li>
                     <li class="nav-item"><a class="nav-link" href="TicketExplain.php">票種說明</a></li>
                 </ul>
             </font>

@@ -278,9 +278,13 @@ if (mysqli_num_rows($result17) > 0) {
               </thead>
               <tbody>
                 <?php
-                if ($array[0][0] == '0') {
-                } else {
-                  for ($i = 0; $i < count($array); $i++) {
+                if ($array[0][0] == '0') 
+                {
+                } 
+                else 
+                {
+                  for ($i = 0; $i < count($array); $i++) 
+                  {
                     $studio_id = $array[$i][0];
 
                     echo "<tr>";
